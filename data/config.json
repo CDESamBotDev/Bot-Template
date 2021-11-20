@@ -1,0 +1,9 @@
+{
+    "token": "",
+    "admin_role": 1,
+    "guild_ids": [0, 1],
+    "ticket": {
+        "open_cat": 0,
+        "closed_cat": 0
+    }
+}
