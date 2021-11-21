@@ -5,7 +5,7 @@ from discord import ApplicationContext
 from bot import MyClient, config
 
 
-class Base(commands.Cog):
+class Base(commands.Cog):  # creates the cog class
     def __init__(self, client: MyClient):
         self.client = client
 

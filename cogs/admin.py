@@ -8,8 +8,12 @@ class Admin(commands.Cog):
     def __init__(self, client: MyClient):
         self.client = client
 
-    @slash_command(guild_ids=config["guild_ids"], default_permission=False)
-    @permissions.has_any_role(*config["admin_roles"])
+    @slash_command(
+        guild_ids=config["guild_ids"], default_permission=False
+    )  # creates a command for the specified guilds, with a permission override
+    @permissions.has_any_role(
+        *config["admin_roles"]
+    )  # example with admin role permissions
     async def clear(self, ctx, amount: int = 5):
         """Clears an amount of messages"""
         await ctx.channel.purge(limit=amount)

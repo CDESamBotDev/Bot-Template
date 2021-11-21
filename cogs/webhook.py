@@ -19,7 +19,7 @@ class Webhook(commands.Cog):
         username: Option(str),
         avatar_url: Option(discord.Member),
     ):
-        """Echoes a message"""
+        """Echoes a message, to another channel, through a webhook"""
         avatar_url = avatar_url.avatar.url
         done = False
         for hook in await ctx.guild.webhooks():

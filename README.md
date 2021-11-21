@@ -1,3 +1,5 @@
 # Bot Template
 
-This is to be used as a template for new bots to be based off, with all the basic code included.
+This a basic template for python bots to be built upon.
+
+This uses the py-cord module, instead of the outdated discord.py module
