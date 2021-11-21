@@ -1,6 +1,6 @@
 {
     "token": "",
-    "admin_role": 1,
+    "admin_roles": [0, 1],
     "guild_ids": [0, 1],
     "ticket": {
         "open_cat": 0,
