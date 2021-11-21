@@ -10,7 +10,7 @@ class Webhook(commands.Cog):
         self.client = client
 
     @slash_command(guild_ids=config["guild_ids"], default_permission=False)
-    @permissions.has_role(*config["admin_roles"])
+    @permissions.has_any_role(*config["admin_roles"])
     async def echo(
         self,
         ctx: discord.ApplicationContext,
