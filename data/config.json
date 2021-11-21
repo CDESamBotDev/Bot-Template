@@ -5,5 +5,11 @@
     "ticket": {
         "open_cat": 0,
         "closed_cat": 0
+    },
+    "welcome_channel": 0,
+    "memer_stats": {
+        "total": 0,
+        "bots": 0,
+        "members": 0
     }
 }

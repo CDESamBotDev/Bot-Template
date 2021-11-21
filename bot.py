@@ -19,6 +19,45 @@ class MyClient(discord.Bot):
         # await self.change_presence(status=discord.Status.online)
         # await self.change_presence(activity=discord.Activity(type=discord.ActivityType.playing,name='example'))
 
+    async def on_member_join(
+        self, member: discord.Member
+    ):  # Event which is ran when a member joins a guild
+
+        # Welcome message
+        channel = self.get_channel(config["welcome_channel"])
+
+        welcome_embed = discord.Embed(
+            title=f"Welcome to {member.guild.name}!",
+            description=f"Welcome {member.mention} to the server!",
+            color=discord.Color.green(),
+        )
+
+        welcome_embed.set_thumbnail(url=member.avatar.url)
+
+        await channel.send(embed=welcome_embed)
+
+        # Update Stats Channels
+        await self.update_guild_stats(member)
+
+    async def on_member_remove(self, member: discord.Member):  # ran on member leave
+        # Update Stats Channels
+        await self.update_guild_stats(member)
+
+    async def update_guild_stats(self, member: discord.Member):
+        # Update Total Channel
+        await self.get_channel(config["member_stats"]["total"]).edit(
+            name=f"Total Members: {len(member.guild.members)}"
+        )
+        # Update Members Channel
+        member_count = len([m for m in member.guild.members if not m.bot])
+        await self.get_channel(config["member_stats"]["members"]).edit(
+            name=f"Member Count: {member_count}"
+        )
+        # Update Bots Channel
+        await self.get_channel(config["member_stats"]["bots"]).edit(
+            name=f"Bot Count: {len(member.guild.members)-member_count}"
+        )
+
 
 client = MyClient(intents=discord.Intents.default())
 
