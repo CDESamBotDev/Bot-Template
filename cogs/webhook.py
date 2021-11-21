@@ -14,7 +14,7 @@ class Webhook(commands.Cog):
     async def echo(
         self,
         ctx: discord.ApplicationContext,
-        channel: Option(discord.TextChannel),
+        channel: discord.TextChannel,#Option(discord.TextChannel),
         message: Option(str),
         username: Option(str),
         avatar_url: Option(discord.Member),
@@ -23,7 +23,7 @@ class Webhook(commands.Cog):
         avatar_url = avatar_url.avatar.url
         done = False
         for hook in await ctx.guild.webhooks():
-            if hook.channel.id == channel.id:
+            if hook.channel.id == channel.id and hook.token:
                 await hook.send(message, username=username, avatar_url=avatar_url)
                 done = True
         if not done:
