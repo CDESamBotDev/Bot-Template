@@ -2,7 +2,7 @@ import discord, json, os
 from discord import ApplicationContext
 from discord.commands import permissions
 
-with open("config.json") as f:
+with open("data/config.json") as f:
     config = json.load(f)
 
 
@@ -59,7 +59,10 @@ class MyClient(discord.Bot):
         )
 
 
-client = MyClient(intents=discord.Intents.default())
+intents = discord.Intents.default()
+intents.members = True
+
+client = MyClient(intents=intents)
 
 # Basic Commands
 

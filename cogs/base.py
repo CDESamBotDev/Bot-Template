@@ -14,11 +14,6 @@ class Base(commands.Cog):  # creates the cog class
     async def base(self, ctx: ApplicationContext):
         await ctx.respond("base")
 
-    # Base Event
-    @commands.Cog.listener()
-    async def on_event(self):
-        pass
-
 
 def setup(client: MyClient):
     client.add_cog(Base(client))

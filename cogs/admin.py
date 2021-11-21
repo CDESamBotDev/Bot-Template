@@ -35,10 +35,16 @@ class Admin(commands.Cog):
 
     @slash_command(guild_ids=config["guild_ids"], default_permission=False)
     @permissions.has_any_role(*config["admin_roles"])
-    async def unban(self, ctx, member: discord.Member, *, reason: str = None):
+    async def unban(self, ctx, member_id: str):
         """Unbans a member from the server"""
-        await member.unban(reason=reason)
-        await ctx.respond(f"{member} was unbanned!", delete_after=3)
+        banned_users = await ctx.guild.bans()
+
+        for ban_entry in banned_users:
+            if ban_entry.user.id == int(member_id):
+                await ctx.guild.unban(ban_entry.user)
+                await ctx.respond(f"Unbanned {ban_entry.user}")
+                return
+        await ctx.respond("Unable to Unban member")
 
 
 def setup(client: MyClient):

@@ -67,6 +67,10 @@ class Ticket(commands.Cog):
 
         if ctx.channel.id in data["open"]:
             data["open"].remove(ctx.channel.id)
+
+            with open("data/tickets.json", "w") as f:
+                json.dump(data, f, indent=4)
+
             await ctx.respond(f"Ticket closed!")
 
             new_cat = self.client.get_channel(config["ticket"]["closed_cat"])
@@ -83,6 +87,7 @@ class Ticket(commands.Cog):
             }
             await asyncio.sleep(10)
             await ctx.channel.edit(category=new_cat, overwrites=overwrites)
+
         else:
             await ctx.respond(f"You do not have permission to close this ticket!")
 
